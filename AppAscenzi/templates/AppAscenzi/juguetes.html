@@ -1,0 +1,28 @@
+{% extends "AppAscenzi/base.html" %}
+{% load static %}
+
+{% block principal %}
+
+<main role="main" class="inner cover">
+  <!-- <center><img src="{% static 'AppAscenzi/assets/imagenes/bichos.jpeg' %}" alt="centered image" height="450" width="670"> </center> -->
+  <br>
+  <center><h1 class="cover-heading"> Juguetes </h1></center>
+  <center><form action="{% url 'juguete-search' %}"class="d-flex">
+    <input class="text-center" name="criterio" type="search" placeholder="Buscar juguete" aria-label="Buscar">
+    <button class="btn btn-outline-success" type="submit">Buscar</button>
+  </form></center>
+  <form action="{% url 'juguete-create' %}" method="post">
+  <br>
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="Enviar">
+  </form>
+  <ul>
+    {% for juguete in juguetes %}
+
+    <li>● Nombre del comprador: {{juguete.nombre}} ● Marca: {{juguete.marca}}</li>
+    
+    {% endfor %}
+  </ul>
+</main>
+{% endblock %}

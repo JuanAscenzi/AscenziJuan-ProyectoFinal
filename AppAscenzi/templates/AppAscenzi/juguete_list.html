@@ -1,0 +1,28 @@
+{% extends "AppAscenzi/base.html" %}
+
+{% load static %}
+
+{% block principal %}
+  <main>
+    <ul class="mt-5 list-unstyled">
+        {% if form %}
+        <form action="{% url 'juguete-create'%}" method="post">
+          {% csrf_token %} 
+          {{form.as_p}}
+          <input type="submit" value="Agregar">
+        </form>
+      </ul>
+        {% endif %}
+        <ul class="mt-5 list-unstyled">
+          {% for juguete in juguetes %} 
+          <li>● Nombre del comprador: {{juguete.nombre}} ●Marca: {{juguete.marca}} ●Cantidad: {{juguete.cantidad}}
+          <a href="{% url 'juguete-detail' juguete.id %}">Detalles</a>
+          {% if user.is_authenticated %}
+            <a href="{% url 'juguete-update' juguete.id %}">Cambiar datos</a>
+            <a href="{% url 'juguete-delete' juguete.id %}">Eliminar</a>
+            {% endif %} 
+          </li> 
+          {% endfor %}
+      </ul>
+  </main>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends "AppAscenzi/base.html" %}
+{% load static %}
+{% block principal %}
+<p style="margin-top: 10px;">Desea eliminar al juguete {{juguete.nombre}}? </p>
+<form method="post">
+    {% csrf_token %}
+    {{form}}
+    <input class="btn btn-danger" type="submit" value="Eliminar">
+    <a class="btn btn-primary" href="{% url 'juguete-list' %}">Cancelar</a>
+</form>
+{% endblock %}

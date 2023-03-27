@@ -1,0 +1,10 @@
+{% extends "AppAscenzi/base.html" %}
+{% load static %}
+{% block principal %}
+<h2>Iniciar sesion</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="Ingresar">
+    </form>
+{% endblock %}
