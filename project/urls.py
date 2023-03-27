@@ -3,7 +3,7 @@ from django.urls import path
 from AppAscenzi.views import index
 from AppAscenzi.views import (
 JugueteList, JugueteDetail, JugueteUpdate, JugueteDelete, JugueteCreate, JugueteSearch,
-Login, SignUp, Logout)
+Login, SignUp, Logout, JugueteMineList)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -17,6 +17,7 @@ urlpatterns = [
     path('login/', Login.as_view(), name="login"),
     path('signup/', SignUp.as_view(), name="signup"),
     path('logout/', Logout.as_view(), name="logout"),
+    path('juguete/list/mine', JugueteMineList.as_view(), name="juguete-mine"),
     
 ]
 

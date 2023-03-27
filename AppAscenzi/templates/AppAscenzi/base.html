@@ -28,8 +28,9 @@
           <img src="static/assets/logo.png" height="70">
           <a class="nav-link active" href="http://127.0.0.1:8000/admin/">Admin</a>
           <a class="nav-link active" href="{% url 'index' %}"> Pagina de inicio </a>
+          <a class="nav-link active" href="{% url 'juguete-list' %}">Listado stock gral </a>
           {% if user.is_authenticated %}
-          <a class="nav-link active" href="{% url 'juguete-list' %}">Listado stock juguetes</a>
+          <a class="nav-link active" href="{% url 'juguete-mine' %}">Listado stock personal </a>
           <a class="nav-link active" href="{% url 'juguete-create' %}">Agregar articulo al stock</a>
           <a class="nav-link active" href="{% url 'logout' %}">Hola {{ user.username }} ● Cerrar sesion</a>
           {% else %}
@@ -43,7 +44,7 @@
         </nav>
       </div>
     </header>
-
+    
     {% block principal %}
 
     {% endblock %}

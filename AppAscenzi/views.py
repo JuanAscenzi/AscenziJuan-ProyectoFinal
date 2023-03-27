@@ -4,7 +4,7 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView, FormView 
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 
 def index(request):
@@ -14,18 +14,31 @@ class JugueteList(ListView):
     model = Juguete
     context_object_name = "juguetes"
 
+class JugueteMineList(LoginRequiredMixin, JugueteList):
+
+    def get_queryset(self):
+        return Juguete.objects.filter(publisher=self.request.user.id).all()
+
 class JugueteDetail(DetailView):
     model = Juguete
     context_object_name = "juguete"
 
-class JugueteUpdate(LoginRequiredMixin, UpdateView):
+class PermisoSoloDueño(UserPassesTestMixin):
+    def test_func(self):
+        user_id = self.request.user.id
+        post_id = self.kwargs.get("pk")
+        return Juguete.objects.filter(publisher=user_id, id=post_id).exists()
+
+class JugueteUpdate(LoginRequiredMixin,PermisoSoloDueño, UpdateView):
     model = Juguete
     success_url = reverse_lazy("juguete-list")
     fields = '__all__'
 
-class JugueteDelete(LoginRequiredMixin, DeleteView):
+
+class JugueteDelete(LoginRequiredMixin,PermisoSoloDueño, DeleteView):
     model = Juguete
     success_url = reverse_lazy("juguete-list")
+
 
 class JugueteCreate(LoginRequiredMixin, CreateView):
     model = Juguete
