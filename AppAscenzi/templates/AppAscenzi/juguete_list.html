@@ -15,6 +15,13 @@
         {% endif %}
         <center><img src="{% static 'assets/lobby.jpeg' %}" alt="centered image" height="450" width="670"></center>
         <ul class="mt-5 list-unstyled">
+
+          {% if not juguetes %}
+
+          <h1>No hay juguetes en stock cargados por ninguno de los usuarios</h1>
+          
+          {% endif %}
+
           {% for juguete in juguetes %} 
           <li>● Nombre del comprador: {{juguete.nombre}} ●Marca: {{juguete.marca}} ●Cantidad: {{juguete.cantidad}}
           <a href="{% url 'juguete-detail' juguete.id %}">Detalles</a>

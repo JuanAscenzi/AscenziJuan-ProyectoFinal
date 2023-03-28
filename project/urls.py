@@ -3,13 +3,14 @@ from django.urls import path
 from AppAscenzi.views import index
 from AppAscenzi.views import (
 JugueteList, JugueteDetail, JugueteUpdate, JugueteDelete, JugueteCreate, JugueteSearch,
-Login, SignUp, Logout, JugueteMineList)
+Login, SignUp, Logout, JugueteMineList, ProfileCreate, ProfileUpdate, about)
 from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name= "index"),
+    path('about', about, name= "about"),
     path('juguete/list', JugueteList.as_view(), name="juguete-list"),
     path('juguete/<pk>/detail', JugueteDetail.as_view(), name="juguete-detail"),
     path('juguete/<pk>/update', JugueteUpdate.as_view(), name="juguete-update"),
@@ -20,7 +21,8 @@ urlpatterns = [
     path('signup/', SignUp.as_view(), name="signup"),
     path('logout/', Logout.as_view(), name="logout"),
     path('juguete/list/mine', JugueteMineList.as_view(), name="juguete-mine"),
-    
+    path('profile/create', ProfileCreate.as_view(), name="profile-create"),
+    path('profile/<pk>/update', ProfileUpdate.as_view(), name="profile-update"),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

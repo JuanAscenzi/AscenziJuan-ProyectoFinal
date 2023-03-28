@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from AppAscenzi.models import Juguete
+from AppAscenzi.models import Juguete, Profile
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView, FormView 
 from django.contrib.auth.views import LoginView, LogoutView
@@ -9,6 +9,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 def index(request):
     return render(request, "AppAscenzi/index.html")
+
+def about(request):
+    return render(request, "AppAscenzi/about.html")
 
 class JugueteList(ListView):
     model = Juguete
@@ -64,3 +67,19 @@ class SignUp(CreateView):
 class Logout(LogoutView):
     next_page = reverse_lazy('index')
 
+class ProfileCreate(CreateView):
+    model = Profile
+    success_url = reverse_lazy("juguete-list")
+    fields = ['avatar']
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+    
+class ProfileUpdate(PermisoSoloDueño, UpdateView):
+    model = Profile
+    success_url = reverse_lazy("juguete-list")
+    fields = ['avatar']
+
+    def test_func(self):
+        return Profile.objects.filter(user=self.request.user).exists()

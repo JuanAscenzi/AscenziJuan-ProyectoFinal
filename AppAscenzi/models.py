@@ -9,7 +9,12 @@ class Juguete(models.Model):
     cantidad = models.CharField(max_length=3)
     publisher = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name="publisher")
     image = models.ImageField(upload_to="juguetes", null=True, blank=True)
+    #creado_el = models.DateTimeField(auto_now_add=True)
 
     @property
     def image_url(self):
         return self.image.url if self.image else ''
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile")
+    avatar = models.ImageField(upload_to="avatares", null=True, blank=True)
