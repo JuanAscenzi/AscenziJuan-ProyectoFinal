@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from AppAscenzi.models import Juguete, Profile
+from AppAscenzi.models import Juguete, Profile, Mensaje
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView, FormView 
 from django.contrib.auth.views import LoginView, LogoutView
@@ -83,3 +83,26 @@ class ProfileUpdate(PermisoSoloDueño, UpdateView):
 
     def test_func(self):
         return Profile.objects.filter(user=self.request.user).exists()
+    
+class MensajeCreate(CreateView):
+    model = Mensaje
+    success_url = reverse_lazy('mensaje-create')
+    fields = '__all__'
+
+
+class MensajeDelete(LoginRequiredMixin, PermisoSoloDueño, DeleteView):
+    model = Mensaje
+    context_object_name = "mensaje"
+    success_url = reverse_lazy("mensaje-list")
+
+    def test_func(self):
+        return Mensaje.objects.filter(destinatario=self.request.user).exists()
+    
+
+class MensajeList(LoginRequiredMixin, ListView):
+    model = Mensaje
+    context_object_name = "mensajes"
+
+    def get_queryset(self):
+        import pdb; pdb.set_trace
+        return Mensaje.objects.filter(destinatario=self.request.user).all()
