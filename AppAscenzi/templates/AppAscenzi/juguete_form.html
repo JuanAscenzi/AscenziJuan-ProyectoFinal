@@ -1,9 +1,11 @@
 {% extends "AppAscenzi/base.html" %}
 {% load static %}
 {% block principal %}
-<form method="post">
-    {% csrf_token %}
-    {{form.as_p}}
-    <input type="submit" value="Agregar">
-</form>
+<div style="margin-top: 10px;">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="Agregar">
+    </form>
+</div>
 {% endblock %}

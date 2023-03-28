@@ -8,4 +8,8 @@ class Juguete(models.Model):
     marca = models.CharField(max_length=10)
     cantidad = models.CharField(max_length=3)
     publisher = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name="publisher")
-    
+    image = models.ImageField(upload_to="juguetes", null=True, blank=True)
+
+    @property
+    def image_url(self):
+        return self.image.url if self.image else ''

@@ -1,13 +1,24 @@
 {% extends "AppAscenzi/base.html" %}
 {% load static %}
 {% block principal %}
-<ul class="mt-5 list-unstyled">
+<div class="d-flex justify-content-center">
+    <div class="col col-8" style="text-align: center;">
+        <h1 class="mt-5">Quedan {{ juguete.cantidad }} del producto {{ juguete.nombre }} en stock</h1>
+        <p><img height="256px" src="{{juguete.image_url}}"></p>
+        <p class="lead">Fue stockeado en la web por {{ juguete.publisher }}</p>
+    </div>
+</div>
+
+
+
+
+
+<!-- <ul class="mt-5 list-unstyled">
     <li> ● Nombre del comprador: {{juguete.nombre}}</li>
     <li> ●Tamaño: {{juguete.tamaño}}</li>
     <li> ●Color: {{juguete.color}}</li>
     <li> ●Marca: {{juguete.marca}}</li>
     <li> ●Cantidad: {{juguete.cantidad}}</li>
-    <li> ●Categoria: {{juguete.categoria}}</li>
-</ul>
+</ul> -->
 
 {% endblock %}

@@ -35,6 +35,7 @@
           <a class="nav-link active" href="{% url 'logout' %}">Hola {{ user.username }} ● Cerrar sesion</a>
           {% else %}
           <a class="nav-link active" href="{% url 'login' %}">Iniciar sesion</a>
+          <a class="nav-link active" href="{% url 'signup' %}">Registrarse</a>
           {% endif %}
           
           <form action="{% url 'juguete-search' %}"class="d-flex">
