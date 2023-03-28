@@ -25,7 +25,7 @@
     <header class="masthead mb-auto">
       <div class="inner">
         <nav class="nav nav-masthead justify-content-center">
-          <img src="static/assets/logo.png" height="70">
+          <img src="{% static '/assets/logo.png' %}" height="60">
           <a class="nav-link active" href="http://127.0.0.1:8000/admin/">Admin</a>
           <a class="nav-link active" href="{% url 'index' %}"> Pagina de inicio </a>
           <a class="nav-link active" href="{% url 'juguete-list' %}">Listado stock gral </a>

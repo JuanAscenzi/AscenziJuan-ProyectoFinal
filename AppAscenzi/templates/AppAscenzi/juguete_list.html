@@ -13,6 +13,7 @@
         </form>
       </ul>
         {% endif %}
+        <center><img src="{% static 'assets/lobby.jpeg' %}" alt="centered image" height="450" width="670"></center>
         <ul class="mt-5 list-unstyled">
           {% for juguete in juguetes %} 
           <li>● Nombre del comprador: {{juguete.nombre}} ●Marca: {{juguete.marca}} ●Cantidad: {{juguete.cantidad}}
