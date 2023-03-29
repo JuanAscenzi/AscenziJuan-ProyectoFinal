@@ -3,9 +3,9 @@
 {% block principal %}
 <div class="d-flex justify-content-center">
     <div class="col col-8" style="text-align: center;">
-        <h1 class="mt-5">Quedan {{ juguete.cantidad }} del producto {{ juguete.nombre }} en stock</h1>
+        <h1 class="mt-5">Quedan {{ juguete.cantidad }} del producto {{ juguete.nombre }}, en tamaño: {{ juguete.tamaño }}, color: {{ juguete.color }} y de marca {{ juguete.marca }}</h1>
         <p><img height="256px" src="{{juguete.image_url}}"></p>
-        <p class="lead">Fue stockeado en la web por {{ juguete.publisher }}</p>
+        <p class="lead">Fue stockeado en la web por {{ juguete.publisher }} el dia {{ juguete.creado_el }}</p>
     </div>
 </div>
 

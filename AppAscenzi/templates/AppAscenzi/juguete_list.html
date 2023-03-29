@@ -21,7 +21,7 @@
           <h1>No hay juguetes en stock cargados por ninguno de los usuarios</h1>
           
           {% endif %}
-
+          <div style="margin-top: 40px;">
           {% for juguete in juguetes %} 
           <li>● Nombre del comprador: {{juguete.nombre}} ●Marca: {{juguete.marca}} ●Cantidad: {{juguete.cantidad}}
           <a href="{% url 'juguete-detail' juguete.id %}">Detalles</a>

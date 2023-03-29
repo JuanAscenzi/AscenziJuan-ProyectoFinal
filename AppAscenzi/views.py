@@ -8,7 +8,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 
 def index(request):
-    return render(request, "AppAscenzi/index.html")
+    juguetes =  Juguete.objects.all().order_by("-creado_el")
+    return render(request, "AppAscenzi/index.html", {"juguetes": juguetes})
 
 def about(request):
     return render(request, "AppAscenzi/about.html")

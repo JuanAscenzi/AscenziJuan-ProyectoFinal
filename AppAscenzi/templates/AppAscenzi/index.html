@@ -3,12 +3,24 @@
 
 {% block principal %}
 
-<main role="main" class="inner cover">
-  <img src="{% static 'assets/toystory.jpeg' %}" alt="centered image" height="450" width="670">
-  <br>
-  <h1 class="cover-heading"> Proyecto Final </h1>
-  <p class="lead"> Juan Ascenzi </p>
+<main>
+  <h1 class="cover-heading"> Stock cargado </h1>
+  <div class="container marketing">
 
+
+    <div class="row">
+
+      {% for juguete in juguetes %}
+      <div class="col-lg-4">
+        <img src="{{juguete.image_url}}" height="220" width="220">
+        <h2>Publicado por: {{juguete.publisher}}</h2>
+        <p>En stock: {{juguete.cantidad}}</p>
+        <p><a class="btn btn-secondary" href="{%url 'juguete-detail' juguete.id %}">Ver detalles</a></p>
+      </div>
+    
+      {% endfor %}
+      
+    </div>
 </main>
 
 {% endblock %}
